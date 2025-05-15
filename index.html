@@ -7,26 +7,26 @@
 <body>
   <h1>Upload</h1>
   <form id="form-post">
-    <input type="text" name="judul" placeholder="Judul" required><br><br>
-    <textarea name="konten" placeholder="Isi postingan..." required></textarea><br><br>
-    <button type="submit">Kirim</button>
-  </form>
-
+  <input type="text" id="judul" name="judul" placeholder="Judul" required><br><br>
+  <textarea id="konten" name="konten" placeholder="Isi postingan..." required></textarea><br><br>
+  <button type="submit">Kirim</button>
+</form>
+  
   <script>
     document.getElementById('form-post').addEventListener('submit', async function (e) {
-      e.preventDefault();
-      const data = {
-        judul: this.judul.value,
-        konten: this.konten.value
-      };
-      const res = await fetch('https://hhhu.moshi2qwq.workers.dev/api/post', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-      const hasil = await res.json();
-      alert(hasil.pesan || "Berhasil dikirim!");
-    });
+  e.preventDefault();
+  const data = {
+    judul: document.getElementById('judul').value,
+    konten: document.getElementById('konten').value
+  };
+  const res = await fetch('https://hhhu.moshi2qwq.workers.dev/api/post', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  });
+  const hasil = await res.json();
+  alert(hasil.message || "Berhasil dikirim!");
+});
   </script>
 </body>
 </html>
